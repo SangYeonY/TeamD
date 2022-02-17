@@ -44,6 +44,32 @@ public class ProductDao {
 		return product;
 	}
 	
+	//1개 행 select 
+		public Product selectOne(String prod_name) {
+			Connection conn = OracleConnectUtil.connect();
+			String sql = "SELECT * FROM TBL_PROD WHERE PROD_NAME = ?";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			Product vo = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, prod_name);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					vo = new Product(rs.getString(1),
+									rs.getInt(2));
+				}
+				pstmt.close();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 실행 오류" + e.getMessage());
+			}
+			OracleConnectUtil.close(conn);
+			return vo;
+		}	
+
+
+	
 	// insert 쿼리
 	public void insert(Product vo) {
 		Connection conn = OracleConnectUtil.connect();
@@ -65,6 +91,45 @@ public class ProductDao {
 		
 	}
 	
+	//update
+		public void update(Product vo) {
+			Connection conn = OracleConnectUtil.connect();
+			String sql = "UPDATE TBL_PROD SET PRICE=? WHERE PROD_NAME=?";
+			PreparedStatement pstmt = null;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, vo.getPrice());
+				pstmt.setString(2, vo.getProd_name());
+				
+				pstmt.execute();
+				pstmt.close();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 실행 오류" + e.getMessage());
+			}
+			OracleConnectUtil.close(conn);
+		}	
 	
-	
+		//delete
+		public void delete(String prod_name) {
+			Connection conn = OracleConnectUtil.connect();
+			String sql = "DELETE FROM TBL_PROD WHERE PROD_NAME=?";
+			PreparedStatement pstmt = null;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, prod_name);
+				
+				pstmt.execute();
+				pstmt.close();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 실행 오류" + e.getMessage());
+			}
+			OracleConnectUtil.close(conn);
+		}	
+		
 }
