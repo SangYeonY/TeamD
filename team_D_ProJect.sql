@@ -51,6 +51,17 @@ VALUES(buy_seq.nextval,2, '아메리카노', 2, sysdate);
 INSERT INTO TEAM_A.TBL_ORDER (ORDER_NUM, CUSTOM_NUM, PROD_NAME, QUANTITY, BUY_DATE) 
 VALUES(buy_seq.nextval,2, '카라멜마끼야또', 1, sysdate);
 
+-- view 만들기
+CREATE VIEW V_ORDER
+as
+SELECT o2.custom_num , o2.prod_name, o2.quantity, o2.PRICE,  DECODE(tc.P_OR_S,'P','포장','S','매장') AS p_or_s 
+FROM TBL_CUSTOM tc
+JOIN (SELECT o.custom_num , tp.prod_name, o.quantity, tp.PRICE, o.QUANTITY*tp.price AS pprice
+FROM TBL_PROD tp
+JOIN TBL_ORDER o ON tp.PROD_NAME = o.PROD_NAME ) o2
+ON tc.custom_num = o2.custom_num 
+ORDER BY CUSTOM_NUM ;
+ 
 --모든 주문 조회
 SELECT * FROM TBL_ORDER;	
 
