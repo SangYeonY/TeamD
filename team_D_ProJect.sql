@@ -1,13 +1,15 @@
 CREATE TABLE TBL_CUSTOM(					-- 고객번호
 	custom_num number(3) PRIMARY KEY,
-	p_or_s char(3)		--포장 'P', 매장'S'
+	p_or_s varchar2(6)		--포장 'P', 매장'S'
 );
+
 
 CREATE SEQUENCE cus_seq;
 DROP SEQUENCE cus_seq;
 
-INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'P');
-INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'S');
+INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'포장');
+INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'매장');
+INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'매장');
 
 SELECT * FROM TBL_CUSTOM tc ; -- 고객 조회
 
@@ -54,7 +56,7 @@ VALUES(buy_seq.nextval,2, '카라멜마끼야또', 1, sysdate);
 -- view 만들기
 CREATE VIEW V_ORDER
 as
-SELECT o2.custom_num , o2.prod_name, o2.quantity, o2.PRICE,  DECODE(tc.P_OR_S,'P','포장','S','매장') AS p_or_s 
+SELECT o2.custom_num , o2.prod_name, o2.quantity, o2.PRICE, tc.p_or_s 
 FROM TBL_CUSTOM tc
 JOIN (SELECT o.custom_num , tp.prod_name, o.quantity, tp.PRICE, o.QUANTITY*tp.price AS pprice
 FROM TBL_PROD tp
