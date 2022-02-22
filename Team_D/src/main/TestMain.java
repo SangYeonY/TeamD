@@ -9,7 +9,7 @@ import db.vo.Custom;
 import db.vo.Order;
 import db.vo.Product;
 
-public class Main {
+public class TestMain {
 
 	public static void main(String[] args) {
 		CustomDao customdao = CustomDao.getCustomDao();

@@ -9,7 +9,7 @@ public class POS_Frame extends JFrame {
 		
 		setContentPane(new POS_Panel());
 		
-		setSize(700, 900);		// 프레임 사이즈
+		setSize(800, 1000);		// 프레임 사이즈
 		setVisible(true);		// 프레임을 보여줘라.
 		setResizable(false);	// 프레임 사이즈 건들지마.
 	}
