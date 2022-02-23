@@ -34,7 +34,7 @@ public class OrderDao {
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
-							rs.getDate(5)));
+							rs.getTimestamp(5)));
 			}
 			pstmt.close();
 			
@@ -61,7 +61,7 @@ public class OrderDao {
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
-							rs.getDate(5));
+							rs.getTimestamp(5));
 				}
 				pstmt.close();
 				
@@ -83,9 +83,9 @@ public class OrderDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(vo.getOrder_num(), vo.getCustom_num());
-			pstmt.setString(vo.getOrder_num(), vo.getProd_name());
-			pstmt.setInt(vo.getOrder_num(), vo.getQuantity());
+			pstmt.setInt(1, vo.getCustom_num());
+			pstmt.setString(2, vo.getProd_name());
+			pstmt.setInt(3, vo.getQuantity());
 			pstmt.execute();
 			pstmt.close();
 			
@@ -105,9 +105,9 @@ public class OrderDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(vo.getOrder_num(), vo.getQuantity());
-				pstmt.setInt(vo.getOrder_num(), vo.getCustom_num());
-				pstmt.setString(vo.getOrder_num(), vo.getProd_name());
+				pstmt.setInt(1, vo.getQuantity());
+				pstmt.setInt(2, vo.getCustom_num());
+				pstmt.setString(3, vo.getProd_name());
 				
 				pstmt.execute();
 				pstmt.close();

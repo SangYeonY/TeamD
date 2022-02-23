@@ -56,8 +56,8 @@ public class CustomDao {
 				pstmt.setInt(1, custom_num);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					vo=new Custom(rs.getInt(1)
-										,rs.getString(2));
+					vo = new Custom(rs.getInt(1)
+									,rs.getString(2));
 				}
 				pstmt.close();
 				
@@ -73,12 +73,13 @@ public class CustomDao {
 		Connection conn = OracleConnectUtil.connect();
 		String sql = "INSERT INTO TBL_CUSTOM" +
 						"(custom_num,p_or_s)" +
-						"VALUES (cus_seq.nextval,'?')";
+						"VALUES (?,?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(vo.getCustom_num(), vo.getP_or_s());
+			pstmt.setInt(1, vo.getCustom_num());
+			pstmt.setString(2, vo.getP_or_s());
 			
 			pstmt.execute();
 			pstmt.close();
@@ -129,4 +130,26 @@ public class CustomDao {
 			}
 			OracleConnectUtil.close(conn);
 		}
+		
+		public int selectNum() {
+			Connection conn = OracleConnectUtil.connect();
+			String sql = "SELECT MAX(CUSTOM_NUM) FROM TBL_CUSTOM";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int max=0;
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					max=rs.getInt(1);
+				}
+				pstmt.close();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 실행 오류"+e.getMessage());
+			}
+			OracleConnectUtil.close(conn);
+			return max;
+		}
+		
 }
