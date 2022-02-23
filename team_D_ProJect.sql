@@ -1,15 +1,13 @@
 CREATE TABLE TBL_CUSTOM(					-- 고객번호
 	custom_num number(3) PRIMARY KEY,
-	p_or_s varchar2(6)		--포장 'P', 매장'S'
+	p_or_s varchar2(10)		--포장 'P', 매장'S'
 );
 
 
-CREATE SEQUENCE cus_seq;
-DROP SEQUENCE cus_seq;
+--CREATE SEQUENCE cus_seq;
+--DROP SEQUENCE cus_seq;
 
-INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'포장');
-INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'매장');
-INSERT INTO TBL_CUSTOM(custom_num,p_or_s) VALUES (cus_seq.nextval,'매장');
+
 
 SELECT * FROM TBL_CUSTOM tc ; -- 고객 조회
 
@@ -19,10 +17,10 @@ CREATE TABLE tbl_prod(						-- 상품
 	PRIMARY KEY (prod_name)
 );
 
-INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('카페라떼',3000);
-INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('아메리카노',2500);
-INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('에스프레소',2000);
-INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('카라멜마끼야또',3500);
+--INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('카페라떼',3000);
+--INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('아메리카노',2500);
+--INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('에스프레소',2000);
+--INSERT INTO TBL_PROD (PROD_NAME,PRICE) VALUES ('카라멜마끼야또',3500);
 
 SELECT * FROM TBL_PROD ;	--메뉴 조회
 

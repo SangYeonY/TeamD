@@ -428,14 +428,19 @@ public class Test {
 	      btnconfirm.addActionListener(new ActionListener() { 			// 결제 하기 버튼 클릭시 countF frame 출력하는 이벤트 발생 시작
 	             @Override
 	             public void actionPerformed(ActionEvent e) {       
-	            	 countF.setVisible(true);
+	            	if(total_price > 0) {
+	            		countF.setVisible(true);
+	            	}else {
+	            		JOptionPane.showMessageDialog(null, "결제할 내용이 없습니다. 메뉴를 선택하세요.");
+	            	}
+	            	
 	           }
 	    });																// 결제 하기 버튼 클릭시 countF frame 출력하는 이벤트 발생 끝			
 	      
 	      btn_yes.addActionListener(new ActionListener() {					// 결제 후 모든 데이터 초기화작업 시작
 		         public void actionPerformed(ActionEvent e) {
 		            JOptionPane.showMessageDialog(null, "결제 완료 되었습니다.\n"
-		         + "결제 금액은 "+ total_price+" 원 입니다.\n 주문 번호 : "+cnt);
+		         + "결제 금액은 "+ total_price+" 원 입니다.\n 주문 번호 : "+cnt + "\n 주문 옵션 : " + store);
 		            OrderDao od = OrderDao.getOrderDao();
 		            if(btnString1!="")											//결제 항목 Order 객체에 저장하여 insert
 		            	od.insert(new Order(cnt,menu[0],(int)spinner1.getValue()));
