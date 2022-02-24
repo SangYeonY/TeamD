@@ -37,12 +37,10 @@ public class Test {
 	private JFrame cart;
 	
 	   String[] menu = {"아메리카노","카페 라떼","돌체 라떼","바닐라 라떼","녹차 케익" };			// 메뉴 배열
-	   String[] change = {"아이스로 변경","사이즈업"};										// 추가항목 명칭 배열
 	   int[] cost = {2500,3000,3500,4000,4500};										// 가격 배열
 	   
 	   String store;																// 매장,포장 선택시 받을 대입될 변수
 	   int cnt;													//고객번호 저장
-	   int[] side_cost = {500,1000};												// 추가항목 가격 배열
 	   int total_price = 0;															// 총 가격 합계
 	  															
 	   	
@@ -133,13 +131,6 @@ public class Test {
 	    lbltotalP.setHorizontalAlignment(SwingConstants.RIGHT);
 	    lbltotalP.setBounds(435, 830, 142, 37);
 	    panel_cart.add(lbltotalP);										// 장바구니에 총 합계 Font 설정 시작
-	      
-//	    JPanel panel_change = new JPanel();								// 추가사항 panel 설정 시작
-//	    panel_change.setBackground(Color.white);
-//	    panel_change.setBounds(0, 0, 474, 477);
-//	    frame.getContentPane().add(panel_change);
-//	    panel_change.setLayout(null);
-//	    panel_change.setVisible(false);									// 추가사항 panel 설정 끝
 	    
 	    JTextArea textArea = new JTextArea(TextArea.SCROLLBARS_VERTICAL_ONLY, 0);		// 장바구니 관련 설정 시작
 	    textArea.setBounds(0, 0, 650, 790);
